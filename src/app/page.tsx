@@ -159,8 +159,8 @@ export default function ComingSoonPage() {
         <div className="text-center absolute bottom-4">
           <p className="text-gray-400 text-xl">
             Trải nghiệm ngay{" "}
-            <a href="#" className="text-green-400">
-              traodocu.vn
+            <a href="https://beta.traodocu.vn/" className="text-green-400">
+              beta.traodocu.vn
             </a>{" "}
             để trao tặng và trao đổi đồ của bạn.
           </p>
