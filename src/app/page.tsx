@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Facebook, Twitter, Github, Instagram } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Facebook, Twitter, Github, Instagram } from "lucide-react";
 
 export default function ComingSoonPage() {
   const [timeLeft, setTimeLeft] = useState({
@@ -11,7 +11,7 @@ export default function ComingSoonPage() {
     hours: 0,
     minutes: 0,
     seconds: 0,
-  })
+  });
 
   useEffect(() => {
     // Function to calculate time difference
@@ -29,16 +29,18 @@ export default function ComingSoonPage() {
           days: 0,
           hours: 0,
           minutes: 0,
-          seconds: 0
+          seconds: 0,
         };
       }
 
       // Calculate days, hours, minutes, and seconds
       return {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        hours: Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
         minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
       };
     };
 
@@ -69,31 +71,39 @@ export default function ComingSoonPage() {
           <div className="flex items-center justify-center ">
             <div className="mr-3 relative">
               <div className="absolute -inset-1 rounded-full bg-green-400/20 blur-md"></div>
-              <img src="/logo192.png" alt="Logo" className="w-20 h-20 object-contain" />
+              <img
+                src="/logo192.png"
+                alt="Logo"
+                className="w-20 h-20 object-contain rounded-2xl"
+              />
             </div>
             <h2 className="text-4xl font-bold">
-              <span className="text-green-400">TRAO</span> <span className="text-green-400">ĐỒ</span> <span className="text-green-400">CŨ</span>
+              <span className="text-green-400">TRAO</span>{" "}
+              <span className="text-green-400">ĐỒ</span>{" "}
+              <span className="text-green-400">CŨ</span>
             </h2>
           </div>
         </div>
 
         {/* Coming Soon Text */}
         <h1 className="mb-4 text-8xl font-bold tracking-tight">
-          <span className="text-green-400">COMING</span> <span className="text-white">SOON</span>
+          <span className="text-green-400">COMING</span>{" "}
+          <span className="text-white">SOON</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="mb-15 text-2xl font-light text-white/90 max-w-2xl text-center">
-          Trao Đồ Cũ tự hào là nền tảng kết nối cộng đồng trao đổi đồ dễ dàng, nhanh chóng và hiệu quả.
+        <p className="mb-15 text-[20px] italic font-light text-white/90 max-w-2xl text-center">
+          Trao Đồ Cũ tự hào là nền tảng kết nối cộng đồng trao đổi đồ dễ dàng,
+          nhanh chóng và hiệu quả.
         </p>
 
         {/* Countdown Timer */}
         <div className="mb-10 grid grid-cols-4 gap-6 text-center">
           {[
-            { value: timeLeft.days, label: "DAYS" },
-            { value: timeLeft.hours, label: "HOURS" },
-            { value: timeLeft.minutes, label: "MINS" },
-            { value: timeLeft.seconds, label: "SECS" },
+            { value: timeLeft.days, label: "Ngày" },
+            { value: timeLeft.hours, label: "Giờ" },
+            { value: timeLeft.minutes, label: "Phút" },
+            { value: timeLeft.seconds, label: "Giây" },
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center">
               <div className="relative mb-3">
@@ -102,7 +112,9 @@ export default function ComingSoonPage() {
                   {item.value.toString().padStart(2, "0")}
                 </span>
               </div>
-              <span className="text-sm font-medium uppercase tracking-wider text-green-400">{item.label}</span>
+              <span className="text-sm font-medium uppercase tracking-wider text-green-400">
+                {item.label}
+              </span>
             </div>
           ))}
         </div>
@@ -113,11 +125,11 @@ export default function ComingSoonPage() {
           <div className="relative flex w-full overflow-hidden rounded-full bg-emerald-800 backdrop-blur-md p-1.5">
             <Input
               type="email"
-              placeholder="Enter your email address"
+              placeholder="Nhập địa chỉ Email của bạn..."
               className="flex-1 h-12 bg-emerald-800 border-0 text-white text-base placeholder:text-green-300/50 focus-visible:ring-0 focus-visible:ring-offset-0"
             />
             <Button className="h-12 px-6 bg-green-400 text-emerald-900 text-base font-medium transition-all duration-300 border-0 rounded-full hover:bg-green-300 cursor-pointer">
-              <a href="#">Notify me</a>
+              <a href="#">Gửi thông báo</a>
             </Button>
           </div>
         </div>
@@ -125,7 +137,10 @@ export default function ComingSoonPage() {
         {/* Social Links */}
         <div className="flex gap-5 mb-8">
           {[
-            { icon: Facebook, href: "#" },
+            {
+              icon: Facebook,
+              href: "https://www.facebook.com/profile.php?id=61573947424629",
+            },
             { icon: Twitter, href: "#" },
             { icon: Github, href: "#" },
             { icon: Instagram, href: "#" },
@@ -143,10 +158,14 @@ export default function ComingSoonPage() {
         {/* Footer */}
         <div className="text-center absolute bottom-4">
           <p className="text-gray-400 text-xl">
-            JOIN US AT <a href="#" className="text-green-400">traodocu.vn</a> TO EXCHANGE OR DONATE YOUR ITEMS
+            Trải nghiệm ngay{" "}
+            <a href="#" className="text-green-400">
+              traodocu.vn
+            </a>{" "}
+            để trao tặng và trao đổi đồ của bạn.
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
