@@ -7,30 +7,52 @@ import { Facebook, Twitter, Github, Instagram } from "lucide-react"
 
 export default function ComingSoonPage() {
   const [timeLeft, setTimeLeft] = useState({
-    days: 10,
-    hours: 12,
-    minutes: 21,
-    seconds: 2,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   })
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        } else if (prev.days > 0) {
-          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
-        }
-        return prev
-      })
-    }, 1000)
+    // Function to calculate time difference
+    const calculateTimeLeft = () => {
+      // Target date: March 26, 2025
+      const targetDate = new Date("2025-03-26T00:00:00");
+      const now = new Date();
 
-    return () => clearInterval(timer)
-  }, [])
+      // Get time difference in milliseconds
+      const difference = targetDate.getTime() - now.getTime();
+
+      // Return 0 if the target date has passed
+      if (difference <= 0) {
+        return {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        };
+      }
+
+      // Calculate days, hours, minutes, and seconds
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000)
+      };
+    };
+
+    // Set initial time
+    setTimeLeft(calculateTimeLeft());
+
+    // Update time every second
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    // Cleanup timer on component unmount
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="h-screen bg-emerald-900 overflow-hidden relative">
@@ -47,9 +69,7 @@ export default function ComingSoonPage() {
           <div className="flex items-center justify-center ">
             <div className="mr-3 relative">
               <div className="absolute -inset-1 rounded-full bg-green-400/20 blur-md"></div>
-
               <img src="/logo192.png" alt="Logo" className="w-20 h-20 object-contain" />
-
             </div>
             <h2 className="text-4xl font-bold">
               <span className="text-green-400">TRAO</span> <span className="text-green-400">ĐỒ</span> <span className="text-green-400">CŨ</span>
